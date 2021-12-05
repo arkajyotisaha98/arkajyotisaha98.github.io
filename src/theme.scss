@@ -1,0 +1,138 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+/* ======== angular material custom theme ======== */
+$my-custom-primary: mat-palette($mat-deep-purple);
+$my-custom-accent: mat-palette($mat-pink, 100, 500, A100);
+$my-custom-warn: mat-palette($mat-lime);
+
+/* Light theme */
+$my-custom-theme: mat-light-theme($my-custom-primary, $my-custom-accent, $my-custom-warn);
+
+/* Dark theme */
+$my-custom-theme: mat-dark-theme($my-custom-primary, $my-custom-accent, $my-custom-warn);
+
+/* Main theme defination */
+@include angular-material-theme($my-custom-theme);
+
+/* Alternate Angular Material Theme */
+.my-alternate-theme {
+  $my-alternate-primary: mat-palette($mat-deep-purple);
+  $my-alternate-accent: mat-palette($mat-green, 400);
+  $my-alternate-warn: mat-palette($mat-grey);
+
+  $my-alternate-theme: mat-light-theme($my-alternate-primary, $my-alternate-accent, $my-alternate-warn);
+
+  @include angular-material-theme($my-alternate-theme);
+
+  body {
+    background-color: whitesmoke;
+  }
+
+  .mat-card {
+    color: #ffc94e;
+    height: auto;
+    border-left: 1px solid #ffc94e;
+    border-right: 1px solid #ffc94e;
+    border-image: linear-gradient(to bottom, rgba(253, 235, 194, 0.041) 0%,#ffca4eb9 25%,#ffc94e 40%, #ffc94e 60%, #ffca4eb9 75%,rgb(253, 235, 194, 0.041) 100%) 1 stretch;
+    background: linear-gradient(180deg, #af599ab9 0, #6b4ca8 100%);
+    box-shadow: 0 0 45px 0 rgba(0, 0, 0, 0.575) !important;
+    border-radius: 0px;
+  }
+  
+  .mat-list-base .mat-list-item {
+    color: whitesmoke;
+  }
+
+  .sidenav {
+    background: url(assets/icons/Cover.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover; /*auto*/
+  }
+  
+  .sidenav:before {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background: linear-gradient(-45deg, #61114db9 0, #371f61 100%);
+  }
+
+  .mat-drawer {
+    background: linear-gradient(45deg, #af1c8a 0, #6034ad 100%);
+    box-shadow: 0 0 45px 0 rgba(0, 0, 0, 0.575);
+  }
+
+  .mat-toolbar.mat-primary {
+    background: linear-gradient(45deg, #af1c8aaf 0, #6134ada8 100%);
+    box-shadow: 0 0 45px 0 rgba(0, 0, 0, 0.575);
+  }
+
+  @mixin gradient-animation( $start, $end, $transTime ) {
+    background-size: 100%;
+    background-image: linear-gradient($start, $end);
+    position: relative;
+    z-index: 100;
+    
+    &:after {
+      background-image: linear-gradient($end, $start);
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      width: 100%;
+      z-index: -100;
+      transition: opacity $transTime;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    &:hover {
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+  
+  app-responsive-sidenav-list .mat-list-item-content:hover,
+  app-responsive-sidenav-list .mat-list-item-content:hover mat-icon, 
+  app-responsive-sidenav-list .mat-list-item-content.hover mat-icon,
+  app-responsive-toolbar a:hover,
+  app-responsive-toolbar a:hover mat-icon, 
+  app-responsive-toolbar a.hover mat-icon,
+  .mat-button-wrapper:hover {
+    @include gradient-animation(#ff8ad8, #ffc94e, 2s);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .mat-button, .mat-list-base .mat-list-item {
+    height: 64px;
+    line-height: 64px;
+  }
+
+  a.mat-button:hover {
+    /* gradient shining border */
+    display: inline-block;
+    height: 64px;
+    border-left: 1px solid #ffc94e;
+    border-right: 1px solid #ffc94e;
+    border-image: linear-gradient(to bottom, rgba(253, 235, 194, 0.041) 0%,#ffca4eb9 25%,#ffc94e 40%, #ffc94e 60%, #ffca4eb9 75%,rgb(253, 235, 194, 0.041) 100%) 1 stretch;
+  }
+
+  a.mat-list-item:hover {
+    /* gradient shining border */
+    display: inline-block;
+    height: 64px;
+    border-top: 1px solid #ffc94e;
+    border-bottom: 1px solid #ffc94e;
+    border-image: linear-gradient(to left, rgba(253, 235, 194, 0.041) 0%,#ffca4eb9 25%,#ffc94e 40%, #ffc94e 60%, #ffca4eb9 75%,rgb(253, 235, 194, 0.041) 100%) 1 stretch;
+  }
+
+}

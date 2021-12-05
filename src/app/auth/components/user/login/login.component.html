@@ -1,0 +1,110 @@
+<!-- <div class="row">
+    <div class="col-md-6 offset-md-3 mt-4">
+        <h3>Login</h3>
+        <form #f="ngForm"
+              (ngSubmit)="onSubmit(f)">
+            <div class="form-group">
+                <mat-label for="loginUsername">Username</mat-label>
+                <input type="text"
+                       name="username"
+                       ngModel
+                       required
+                       #username="ngModel"
+                       class="form-control"
+                       id="loginUsername"
+                       placeholder="Enter username">
+            </div>
+            <div class="form-group">
+                <mat-label for="loginPassword">Password</mat-label>
+                <input type="password"
+                       name="password"
+                       ngModel
+                       required
+                       #password="ngModel"
+                       class="form-control"
+                       id="loginPassword"
+                       placeholder="Password">
+            </div>
+            <div class="form-group form-check">
+                <a [routerLink]="['/reset-password']">Forgot Password</a>
+            </div>
+            <button type="submit"
+                    [disabled]="f.invalid"
+                    class="btn btn-primary">Login <i class="fas fa-sign-in-alt"></i></button>
+        </form>
+    </div>
+</div> -->
+
+
+
+<!-- <div class="center-content">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>Login/Register</mat-card-title>
+        <mat-card-subtitle>Angular tutorial</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-tab-group>
+          <mat-tab mat-label="Login">
+            <mat-form-field class="example-full-width">
+              <mat-mat-label>Email</mat-mat-label>
+              <input type="email" matInput placeholder="Email" value="" [(ngModel)]="email">
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+  
+            <mat-form-field class="example-full-width">
+              <mat-mat-label>Password</mat-mat-label>
+              <input type="password" matInput placeholder="Password" [(ngModel)]="password">
+              <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+            <button mat-button color="primary" (click)="login()">Login</button>
+          </mat-tab>
+          <mat-tab mat-label="Register">
+            <mat-form-field class="example-full-width">
+              <mat-mat-label>Email</mat-mat-label>
+              <input type="email" matInput placeholder="Email" value="" [(ngModel)]="remail">
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+  
+            <mat-form-field class="example-full-width">
+              <mat-mat-label>Password</mat-mat-label>
+              <input type="password" matInput placeholder="Password" [(ngModel)]="rpassword">
+              <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-mat-label>Password</mat-mat-label>
+              <input type="password" matInput placeholder="Password" [(ngModel)]="rcpassword">
+              <mat-icon matSuffix>vpn_key</mat-icon>
+            </mat-form-field>
+            <button mat-button color="primary" (click)="register()">Register</button>
+          </mat-tab>
+        </mat-tab-group>
+  
+      </mat-card-content>
+  
+    </mat-card>
+  </div> -->
+
+
+  <!-- <div>
+    <img src="assets/img/single_user.png" id="icon" alt="User Icon" />
+  </div> -->
+  <form #signInForm="ngForm" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+    <input type="text" name="email" #email="ngModel" [(ngModel)]="model.email" placeholder="Email" [pattern]="emailRegex" required
+      [ngClass]="{'invalid-textbox' :signInForm.submitted && !email.valid }">
+      <mat-icon matSuffix>email</mat-icon>
+    <div *ngIf="signInForm.submitted && email.errors && email.errors['pattern']">
+      <mat-label class="validation-message">Invalid email address.</mat-label>
+    </div>
+    <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="Password" required minlength="4"
+      [ngClass]="{'invalid-textbox' :signInForm.submitted && !password.valid }">
+      <mat-icon matSuffix>vpn_key</mat-icon>
+    <div *ngIf="signInForm.submitted && password.errors && password.errors['minlength']">
+      <mat-label class="validation-message">Minimum 4 characters.</mat-label>
+    </div>
+    <button mat-button type="submit"> Sign In </button>
+  </form>
+  <!-- Error message -->
+  <div class="alert" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+  </div>
